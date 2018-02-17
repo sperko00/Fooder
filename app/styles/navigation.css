@@ -1,0 +1,83 @@
+@media screen and (max-width : 800px)
+{
+    .nav-cart
+    {
+        display: grid;  
+        align-self: flex-end;   
+        list-style-type: none;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .nav-cart-price
+    {
+        font-weight: 550;
+        font-size: 15px;
+        color: #349034;
+        text-align: center;
+    }
+}
+@media screen and (min-width : 50px)
+{
+    .navigation 
+    {
+        grid-area: navigation;
+        padding-left:20px;
+        padding-right: 20px;
+    } 
+    .nav-menu
+    {
+        display: none;
+    }
+}
+@media screen and (min-width: 800px) {
+    .nav-cart{
+        display: none;
+    }
+    .nav-hamburger
+    {
+        display:none;
+    }
+    .nav-menu
+    {
+        display:inline-flex;
+        align-self: center;
+    }
+}
+
+.navigation
+{
+    background: white;
+    display: flex;
+    z-index: 2; 
+    justify-content: space-between;
+    margin-top:0;
+    margin-left:0;
+    margin-right: 0;
+    color:#232323;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(59, 57, 57, 0.651);
+}
+.navigation  h1
+{
+    padding-left: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.nav-wrapper
+{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.nav-menu
+{
+    margin-left: 10px;
+    list-style-type: none;
+    font-weight: 400;
+    font-size:20px;
+    padding: 0;
+}
+.nav-menu > li 
+{
+    display: inline-flex;
+    margin-left: 15px;
+}

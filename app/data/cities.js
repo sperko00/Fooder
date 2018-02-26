@@ -13,7 +13,7 @@ var ZagrebKvarts = [
     "Centar","Černomerec","Cvjetno naselje","Dubrava","Trešnjevka"
 ];
 var RijekaKvarts = [
-    "Banderovo","Centar","Grobnik","Kantrida"
+    "Centar","Grobnik","Kantrida"
 ];
 export var ListOfCities = [
     new city('Split' , SplitKvarts),

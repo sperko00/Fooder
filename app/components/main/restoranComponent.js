@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/main/restoran.css';
 import '../../styles/style.css';
 import '../../styles/animate.css';
-import { MainComponent } from './mainComponent';
+
 export class RestoranComponent extends React.Component{
     constructor(props)
     {
@@ -10,6 +10,11 @@ export class RestoranComponent extends React.Component{
         this.state = {selected : false}
         this.handleClickEvent = this.handleClickEvent.bind(this);
         this.getStars = this.getStars.bind(this);
+        this.handleCommentsClicked = this.handleCommentsClicked.bind(this);
+    }
+    handleCommentsClicked()
+    {
+        this.props.showComments(this.props.name);
     }
     handleClickEvent()
     {
@@ -47,10 +52,10 @@ export class RestoranComponent extends React.Component{
     render()
     {
         return(
-        <div  onClick = {this.handleClickEvent} className="restoran fadeIn">
-            <div  className="restoran-img"><img className="restoran-image" height="100%" width="100%" src={this.props.img} /></div>
-            <div className="restoran-name"><h5>{this.props.name}</h5></div>
-            <div className="restoran-com"><i className="fa fa-comment"></i><span className="rate-number">{this.props.comm}</span>
+        <div   className="restoran fadeIn">
+            <div onClick = {this.handleClickEvent}  className="restoran-img"><img className="restoran-image" height="100%" width="100%" src={this.props.img} /></div>
+            <div onClick = {this.handleClickEvent} className="restoran-name"><h5>{this.props.name}</h5></div>
+            <div onClick = {this.handleCommentsClicked} className="restoran-com"><i className="fa fa-comment"></i><span className="rate-number">{this.props.comm}</span>
             </div>
             <div className="restoran-rate" >
                 {this.getStars()}

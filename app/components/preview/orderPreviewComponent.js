@@ -10,7 +10,8 @@ export class OrderPreview extends React.Component
     constructor(props)
     {
         super(props);
-        this.state = {orderState : 0,napomene : [],restorani : this.props.order.restorani,ukupno_restorana : this.props.order.restorani.length};
+        let rests = this.props.order.restorani.filter(item => item.ukupno != 0);
+        this.state = {orderState : 0,napomene : [],restorani : rests,ukupno_restorana : rests.length};
         this.getNapomena = this.getNapomena.bind(this);
         this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
@@ -68,7 +69,6 @@ render()
     
         {    
             this.state.restorani.map((restoran,i) => {
-                if(restoran.ukupno != 0)
                  return <PreviewRestoran napomena = {this.state.napomene[i]} key={i} ime = {restoran.imeRestorana} cijena = {restoran.ukupno} index = {i} getNapomena = {this.getNapomena}/>
             }
                 
@@ -106,8 +106,9 @@ render()
     </div>
     <div className="articles-body">
     {    
-            this.state.restorani.map((restoran,i) => 
-                <DeliveryAccept key={i} orderAccepted = {this.orderAccepted} orderRejected = {this.orderRejected} restoran = {restoran.imeRestorana} cijena = {restoran.ukupno} index={i}/>
+            this.state.restorani.map((restoran,i) => {
+                return <DeliveryAccept key={i} orderAccepted = {this.orderAccepted} orderRejected = {this.orderRejected} restoran = {restoran.imeRestorana} cijena = {restoran.ukupno} index={i}/> 
+            }
             )
         }
         <div className={this.state.ukupno_restorana == 0 ? "finish-btn-container" : "hider"}>

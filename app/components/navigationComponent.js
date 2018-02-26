@@ -11,6 +11,11 @@ export class NavigationComponent extends React.Component {
         this.state = {hamClicked : false };
         this.handleCartClick = this.handleCartClick.bind(this);
         this.handleHamburgerClicked = this.handleHamburgerClicked.bind(this);
+        this.handleReviewClicked = this.handleReviewClicked.bind(this);
+    }
+    handleReviewClicked()
+    {
+        this.props.showReviewScreen();
     }
     handleCartClick()
     {
@@ -33,15 +38,13 @@ export class NavigationComponent extends React.Component {
                 <span className={this.state.hamClicked ? "paint-span": ""}></span>
                 <ul id="menu" className={this.state.hamClicked ? "menu-showed":"menu-closed"}>
                 <a href="#"><li>POČETNA</li></a>
-                <a href="#"><li>OSTAVI RECENZIJU</li></a>
-                <a href="#"><li>O NAMA</li></a>
+                <a href="#"><li onClick = {this.handleReviewClicked} >OSTAVI RECENZIJU</li></a>
                 </ul>
             </div>
             </nav>
                 <h1>FOODER</h1>
                 <ul className="nav-menu">
-                    <li className="clickable">OSTAVI RECENZIJU </li>
-                    <li className="clickable">O NAMA</li>
+                    <li onClick = {this.handleReviewClicked} className="clickable">OSTAVI RECENZIJU </li>
                 </ul>
             </div>
                 <ul className="nav-cart">

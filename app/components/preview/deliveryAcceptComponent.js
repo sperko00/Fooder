@@ -24,8 +24,8 @@ export class DeliveryAccept extends React.Component {
     }
     componentDidMount()
     {
-        var delTime = this.randomIntFromInterval(15,90);
-        var waitTime = this.randomIntFromInterval(1,20) * 1000;
+        var delTime = this.randomIntFromInterval(15,120);
+        var waitTime = this.randomIntFromInterval(1,5) * 1000;
         this.interval = setInterval( () => { 
             if(this.state.deliveryTime == 0)
             {

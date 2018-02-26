@@ -1,10 +1,8 @@
-.order-wrapper
-{
+.rev-wrap{
     width: 100%;
-    padding:20px;
-    padding-bottom: 0;
+    padding : 30px;
 }
-.articles-heading
+.rev-heading
 {
     height: 60px;
     background-color: #173233;
@@ -14,20 +12,22 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
 }
-.articles-body
+.rev-active
 {
     width: 100%;
     height: auto;
     background-color: transparent;
 }
-.previewButtons
+.rev-buttons
 {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-.prev-btn-next
+.rev-btn-accept
 {
     background-color: #4CAF50;
     width: 48%;
@@ -40,7 +40,7 @@
     margin: 4px 2px;
     cursor: pointer;
 }         
-.prev-btn-back
+.rev-btn-close
 {
     background-color: #f44336;
     width: 48%;
@@ -52,40 +52,14 @@
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-} 
-@media screen and (min-width : 50px)
-{
-    .prev-btn-back
-    {
-        font-size: 15px;
-        font-weight: 500;
-    }
-    .prev-btn-next
-    {
-        font-size: 15px;
-        font-weight: 500;
-    }
-    .articles-heading h2{
-        font-size: 15px;
-        font-weight: 500;
-    }
 }
-@media screen and (min-width : 450px)
+.hide-buttons
 {
-    .prev-btn-back
-    {
-        font-size: 16px;
-        font-weight: 500;
-    }
-    .prev-btn-next
-    {
-        font-size: 16px;
-        font-weight: 500;
-    }
-    .articles-heading h2{
-        font-size: 20px;
-        font-weight: 600;
-    }
+    display: none;
 }
-
+.rev-finish-button{
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}
 

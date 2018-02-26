@@ -10,12 +10,14 @@ import './styles/style.css';
 import './styles/final.css';
 import { ChangeRestoran } from './components/changeRestoran';
 import { restoran } from './data/restaurants';
+import {RestoranInfoComponent} from './components/restoran/restoranInfoComponent';
+import {ReviewComponent} from './components/review/reviewComponent';
 
 class App extends React.Component {
     constructor(props)
     {
         super(props);
-        this.state ={Grad : '', Kvart : '',Restoran : '', Meal : {}, app_state:0,finalOrder : {},clearCart:false,showCart : false,showNav : false, navCartPrice : 0};
+        this.state ={Grad : '', Kvart : '',Restoran : '', RestoranInfo : '',infoShow : false, reviewShow : false,Meal : {}, app_state:0,finalOrder : {},clearCart:false,showCart : false,showNav : false, navCartPrice : 0};
         this.handleLocationSelected = this.handleLocationSelected.bind(this);
         this.handleRestoranSelected = this.handleRestoranSelected.bind(this);
         this.forceRestSelect = this.forceRestSelect.bind(this);
@@ -28,6 +30,17 @@ class App extends React.Component {
         this.closePreview = this.closePreview.bind(this);
         this.finishPreview = this.finishPreview.bind(this);
         this.showRests = this.showRests.bind(this);
+        this.handleShowComments = this.handleShowComments.bind(this);
+        this.handleCloseRestInfo = this.handleCloseRestInfo.bind(this);
+        this.showReviewScreen = this.showReviewScreen.bind(this);
+        this.handleRevClose = this.handleRevClose.bind(this);
+    }
+    handleRevClose(){
+        this.setState({reviewShow:false});
+    }
+    showReviewScreen()
+    {
+        this.setState({reviewShow : true})
     }
     finishPreview()
     {
@@ -71,7 +84,14 @@ class App extends React.Component {
     handleRestoranSelected(restoran)
     {
         if(this.state.Restoran !== restoran)
-            this.setState({Restoran : restoran ,Meal : null, app_state : 2,clearCart : false});
+            this.setState({Restoran : restoran ,infoShow:false,Meal : null, app_state : 2,clearCart : false});
+    }
+    handleCloseRestInfo(){
+        this.setState({infoShow : false});
+    }
+    handleShowComments(restoran)
+    {
+        this.setState({infoShow  : true, restoranInfo:restoran})
     }
     showRests()
     {
@@ -98,6 +118,8 @@ class App extends React.Component {
     render() 
     {
         var orderPreview = null;
+        var restoranInfo = null;
+        var reviewWindow = null;
         var restoranOdabran = null;
         if(this.state.app_state == 2)
             {
@@ -117,11 +139,29 @@ class App extends React.Component {
             </div>
         </div>
         }
+        if(this.state.infoShow)
+        {
+        restoranInfo = 
+        <div className = "preview-showed">
+            <div className="preview">
+                <RestoranInfoComponent handleCloseRestInfo = {this.handleCloseRestInfo} handleRestoranSelected = {this.handleRestoranSelected} restoran = {this.state.restoranInfo} />
+            </div>
+        </div>
+        }
+        if(this.state.reviewShow)
+        {
+        reviewWindow = 
+        <div className = "preview-showed">
+            <div className="preview">
+                <ReviewComponent handleRevClose = {this.handleRevClose} />
+            </div>
+        </div>
+        }
         
     return(
       
         <div className="site">
-            <NavigationComponent cartClicked = {this.cartClicked} navClicked = {this.navClicked} navCartPrice = {this.state.navCartPrice}/>
+            <NavigationComponent showReviewScreen = {this.showReviewScreen} cartClicked = {this.cartClicked} navClicked = {this.navClicked} navCartPrice = {this.state.navCartPrice}/>
             
             <LocationComponent  handleLocationSelected = {this.handleLocationSelected}/>
             {restoranOdabran}
@@ -130,7 +170,8 @@ class App extends React.Component {
                     <StateComponent stanje = {this.state.app_state} restoran = {this.state.Restoran}/>
                 </div>
             <MainComponent grad={this.state.Grad} kvart={this.state.Kvart} 
-                app_state={this.state.app_state} handleRestoranSelected={this.handleRestoranSelected} getMeal = {this.getMeal}/>
+                app_state={this.state.app_state} handleRestoranSelected={this.handleRestoranSelected} handleShowComments = {this.handleShowComments} 
+                getMeal = {this.getMeal} />
             </main>
             <aside className={ this.state.showCart ? "aside" : "aside cart-closed" }>
             { 
@@ -140,10 +181,12 @@ class App extends React.Component {
             }
             </aside>
             {orderPreview}
+            {restoranInfo}
+            {reviewWindow}
             <footer className="footer">COPYRIGHT</footer>
             
             <div className={this.state.showCart || this.state.showNav  ? "cover" : "hider"}></div>
-            <div className={this.state.app_state == 3 ? "preview-cover" : "hider"}></div>
+            <div className={this.state.app_state == 3 || this.state.infoShow  || this.state.reviewShow ? "preview-cover" : "hider"}></div>
         </div>
      
       );     

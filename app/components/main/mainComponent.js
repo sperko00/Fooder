@@ -19,6 +19,7 @@ export class MainComponent extends React.Component{
         this.handleMealClicked = this.handleMealClicked.bind(this);
         this.cancelClicked = this.cancelClicked.bind(this);
         this.handleAddings = this.handleAddings.bind(this);
+        this.showComments = this.showComments.bind(this);
     }
     componentWillReceiveProps(nextProps)
     {
@@ -28,6 +29,10 @@ export class MainComponent extends React.Component{
     {
        this.setState({main_state : 2});
        this.props.handleRestoranSelected(selectedRest);
+    }
+    showComments(restoran)
+    {
+        this.props.handleShowComments(restoran);
     }
     handleMealClicked(clickedMeal,clickedAddings,clickedPrice,clickedCategory)
     {
@@ -58,7 +63,7 @@ export class MainComponent extends React.Component{
             active =
              <div className="main-interact">
                 {ListOfRest.map( (item, i) => 
-                    <RestoranComponent handleSelection = {this.handleSelection} key={i} name = { item.ime } 
+                    <RestoranComponent handleSelection = {this.handleSelection} showComments = {this.showComments} key={i} name = { item.ime } 
                     img={item.slika} comm={item.komentari} rate={item.ocjena}  /> 
                     )}
             </div>
